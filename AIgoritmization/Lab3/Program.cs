@@ -38,20 +38,20 @@ Console.WriteLine($"s={s:F2}");
 //вычисление бесконечных сумм
 //вариант 11
 Console.Write("введите n:");
-int n = int.Parse(Console.ReadLine());
+int n1 = int.Parse(Console.ReadLine());
 Console.Write("введите x:");
-int x = int.Parse(Console.ReadLine());
-double s = 0;
+int xx = int.Parse(Console.ReadLine());
+double s1 = 0;
 long F = 1;
-for (int i = 1; i < n; i ++)
+for (int i = 1; i < n1; i ++)
 {
     for (int j = 1; j <= i; j ++)
     {
         F *= j;
     }
-    s+=((2*i+1)*Math.Pow(x,n)/F);
+    s1+=((2*i+1)*Math.Pow(xx,n1)/F);
 }
-Console.WriteLine($"s={s}");
+Console.WriteLine($"s={s1}");
 
 //табулирование функций
 //вариант 11. высокий
