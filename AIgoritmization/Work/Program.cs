@@ -120,19 +120,129 @@
 //    Console.WriteLine(mas[i]+" ");
 //}
 //Console.WriteLine();
-var tuple = GetData(mas);
-Console.WriteLine(res.max);
-Console.WriteLine(res.min);
-Console.WriteLine(res.sum);
-Console.WriteLine(res.mult);
-(int max, int min, int sum, int milt) GetData(int[]mas)
+//var tuple = GetData(mas);
+//Console.WriteLine(res.max);
+//Console.WriteLine(res.min);
+//Console.WriteLine(res.sum);
+//Console.WriteLine(res.mult);
+//(int max, int min, int sum, int milt) GetData(int[]mas)
+//{
+//    int _max = mas[0], _min = mas[0], s = 0, p = 1;
+//    var res (max: _max, min: _min, sum: s, mult: p);
+//    for (int i = 0; i < mas.Length; i++)
+//    {
+//        if (mas[i]> _max) _max=mas[i];
+//        if (mas[i] < _min) _min = mas[i];
+//        sum += mas[i];
+//        mult*= mas[i] ;
+//    }
+
+
+
+
+
+//5.12.2025
+//ООП
+//Rectangle rectangle1 = new Rectangle();
+//Console.WriteLine($"{rectangle1.getArea():F2}");
+//Console.WriteLine($"{rectangle1.getPerimetr():F2}");
+
+//Rectangle rectangle2 = new Rectangle();
+//Console.WriteLine($"{rectangle2.Width()}*{rectangle2.Height()}={rectangle2.getArea()}");
+//Console.WriteLine($"2*({rectangle2.Width()}+{rectangle2.Height()})={rectangle2.getPerimetr()}");
+
+//rectangle2.setWidth(150);
+//rectangle2.setHeight(500);
+//Console.WriteLine($"{rectangle2.getWidth()}*{rectangle2.getHeight()}={rectangle2.getArea()}");
+//Console.WriteLine($"2*({rectangle2.getWidth()}+{rectangle2.getHeight()})={rectangle2.getPerimetr()}");
+
+//class Rectangle
+//{
+
+//    private double width;
+//    private double height;
+
+//    public Rectangle(double _width, double _height)
+//    {
+//        this.width = _width;
+//        this.height = _height;
+//    }
+//    public Rectangle() //конструктор по умолчанию
+//    {
+//        width = 1;
+//        height = 1;
+//    }
+//    public double Width 
+//    {
+//        get { return width; }
+//        set { if (value > 0) width = value; }
+//    }
+//    public double Height
+//    {
+//        get { return Height; }
+//        set { if (value > 0) Height = value; }
+//    }
+//    //геттеры
+//    //public double getWidth()
+//    //    { return width; }
+//    //public double getHeight()
+//    //{ return height; }
+//    public double getPerimetr()
+//    {
+//        return 2 * (width + height);
+//    }
+//    public double getArea()
+//    {
+//        return width * height;
+//    }
+//    ////сеттеры
+//    //public void setWidth(double _width)
+//    //    { width = _width; }
+//    //public void setHeight(double _height)
+//    //        { height = _height; }
+//}
+
+Console.WriteLine("Введите день");
+int day = int.Parse(Console.ReadLine()!);
+Console.WriteLine("Введите время разговора в минутах");
+int time = int.Parse(Console.ReadLine()!);
+Console.WriteLine("Введите цену минуты разговора");
+int price = int.Parse(Console.ReadLine()!);
+Tel tel = new Tel(day,time,price);
+tel.Print();
+class Tel
 {
-    int _max = mas[0], _min = mas[0], s = 0, p = 1;
-    var res (max: _max, min: _min, sum: s, mult: p);
-    for (int i = 0; i < mas.Length; i++)
+    private int day;
+    private double time;
+    private decimal price;
+
+    public Tel(int day, double time, decimal price)
     {
-        if (mas[i]> _max) _max=mas[i];
-        if (mas[i] < _min) _min = mas[i];
-        sum += mas[i];
-        mult*= mas[i] ;
+        this.day = day;
+        this.time = time;
+        this.price = price;
     }
+    public int Day
+    { get { return day; } }
+    public double Time
+    { get { return time; } }
+    public decimal Price
+    { get { return price; } }
+    public decimal getTotal()
+    {
+        return day switch
+        {
+            1 => (decimal)time * price,
+            2 => (decimal)time * price,
+            3 => (decimal)time * price,
+            4 => (decimal)time * price,
+            5 => (decimal)time * price,
+            6 => (decimal)0.9 * ((decimal)time * price),
+            7 => (decimal)0.9 * ((decimal)time * price),
+        };
+    }
+    public void Print()
+    {
+        Console.WriteLine($"стоимость {time} минут разговора");
+    }
+}
