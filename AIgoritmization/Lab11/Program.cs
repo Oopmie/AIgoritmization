@@ -8,9 +8,10 @@ Console.WriteLine("Оценка: ");
 int esteem = int.Parse(Console.ReadLine()!);
 Console.WriteLine("оценка потомками P: ");
 int p = int.Parse(Console.ReadLine()!);
-SupervisorChild supervisor = new SupervisorChild (self_esteem, esteem, surname, p);
+Supervisor supervisor = new Supervisor (self_esteem, esteem, surname);
 Console.WriteLine($"оценка работы Q: {supervisor.getEsteem()}");
-Console.WriteLine($"оцека работы Qp: {supervisor.getQp()}");
+SupervisorChild supervisor1 = new SupervisorChild (self_esteem, esteem, surname, p);
+Console.WriteLine(supervisor1);
 
 class Supervisor
 {
@@ -18,24 +19,30 @@ class Supervisor
     private int self_esteem;
     private string? surname;
 
-    public Supervisor(int esteem, int self_esteem, string? surname)
+    public Supervisor(int _esteem, int _self_esteem, string? _surname)
     {
-        this.esteem = esteem;
-        this.self_esteem = self_esteem;
-        this.surname = surname;
+        this.esteem = _esteem;
+        this.self_esteem = _self_esteem;
+        this.surname = _surname;
     }
     public int Esteem
-    { get { return esteem; } }
+    { get { return esteem; }
+        set { if (value >= 0) esteem = value; } }
     public int Self_esteem
-    { get { return self_esteem; } }
+    { get { return self_esteem; }
+        set {if(value>=0) self_esteem = value; }
+    }
     public string? Surname
-    { get { return surname; } }
+    { get { return surname; }
+        set { surname = value; } }
     
-    
-    public int getEsteem()
+
+
+    public virtual int getEsteem()
     {
         return esteem/self_esteem;
     }
+    
 }
 class SupervisorChild : Supervisor
 {
@@ -46,11 +53,19 @@ class SupervisorChild : Supervisor
         this.p = P;
     }
 
-    public int P { get; private set; }
-
-    public double getQp()
+    public int P
     {
-        return  (int)(0.3 * getEsteem() + 0.7 * P);
+        get { return p; }
+        set { p = value; }
+    }
+
+    public override int getEsteem()
+    {
+        return (int)(0.3*base.getEsteem()+0.7*p);
+    }
+    public override string ToString()
+    {
+        return $"Qp = {getEsteem()}";
     }
 }
 
